@@ -59,18 +59,7 @@ class Cog(commands.Cog):
                 await self.Add(msg, Attachment)
             else:
                 # Otherwise, call out the original message as a repost
-                BotMSG = await OriginMSG.reply(
-                    Guild.msgRepostDetected.format(
-                        AUTHOR=msg.author.mention,
-                        author=msg.author.name,
-                        ORIGIN=OriginMSG.author.mention,
-                        origin=OriginMSG.author.name
-                    )
-                )
-                await BotMSG.delete(delay=10)
-
-                if Guild.rDelete:
-                    await msg.delete(delay=10)
+                await msg.add_reaction("♻")
         
     async def Add(self, msg: discord.Message, Attachment: discord.Attachment):
         File = await Attachment.read()
